@@ -1,0 +1,81 @@
+<!Doctype HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv= "X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="author" content="Miłosz Sędziak"/>
+	<title>temat</title>
+	<meta name="description" content="opis" />
+	<meta name="keywords" content=""/>
+
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+	<!-- W js dokładnośc matematyki jest do 2^53
+	Wszystkie liczby to reprezentacje zmiennoprzecinkowe zapisane w systemie IEE 754 64-bit
+	Math.floor() zaokrągla w doł
+	Math.ceil() zaokrąglenie w gore
+ 	Math.trunc() przycina-->
+		<script>
+			document.write(0.1*5); document.write("<br />");
+			document.write(0.15 *3); document.write("<br />");
+			document.write(0.1 +0.2); document.write("<br /><br />");
+			// 2^53
+			document.write(Math.pow(2,53)); document.write("<br />");
+			document.write(Math.pow(2,53)+1); document.write("<br />");
+			document.write(Math.pow(2,53)-1); document.write("<br />");
+			document.write(Math.pow(2,53)+2); document.write("<br />");
+			document.write(Math.pow(2,53)*2); document.write("<br />");
+			// mantysa .. jak zapomne to warto poczytac o niej
+			if(0.1 + 0.2 == 0.3) document.write("true<br /><br />");
+			else document.write("false <br /><br />");
+
+			var x;
+
+			x= Math.round ((0.1 + 0.2)*10) /10;
+			document.write(x+"<br />");
+
+			x = Math.round((0.15 * 3)*100) / 100;
+			document.write(x+"<br />");
+
+			// Wniosek:
+			// Chcesz 2 miejsca po przecinku? * 10
+			// Chcesz 3 miejsca po przecinku? * 100
+			x = 0.15 * 3;
+			x = x.toFixed(2); document.write(x+"<br /><br />");
+
+
+			// To teraz jak zaokrąglic z 1.005 >> 1.01
+			x = 1.005;
+			x = Math.round(x*100) / 100;
+			document.write(x+"<br />");
+			x = 1.005;
+			x = Math.round(x*1000) / 1000;
+			document.write(x+"<br /><br />");
+
+			x = 1.005;
+			x = x.toFixed(2);
+			document.write(x+"<br />");
+			x = 1.005;
+			x = x.toFixed(3);
+			document.write(x+"<br /><br />");
+
+			Number.prototype.round = function(miejsce)
+			{
+				// dzięki temu nawiasowi na pewno zostanie zmaienione ze stringa na liczbe
+				return +(Math.round(this+"e+"+miejsce) + "e-"+miejsce);
+				// e to wykładnik, exponent
+
+			}
+
+			x = 1.005;
+			x = x.round(2);
+			document.write(x+"<br /><br />");
+
+		</script>
+
+</body>
+
+</html>
